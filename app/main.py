@@ -29,9 +29,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.get("/")  # zone apex
-def zone_apex():
-    return {"Good Day": "Sunshine!"}
+# @app.get("/")  # zone apex
+# def zone_apex():
+   # return {"Good Day": "Sunshine!"}
 
 @app.get('/genres')
 async def get_genres():
