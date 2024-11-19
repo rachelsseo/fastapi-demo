@@ -7,16 +7,16 @@ import mysql.connector
 from mysql.connector import Error
 import json
 import os
-from mysql.connector import RefreshOption
+# from mysql.connector import RefreshOption
 
-refresh = RefreshOption.LOG | RefreshOption.THREADS
+# refresh = RefreshOption.LOG | RefreshOption.THREADS
 
 DBHOST = "ds2022.cqee4iwdcaph.us-east-1.rds.amazonaws.com"
-DBUSER = "admin"
+DBUSER = "ds2022"
 DBPASS = os.getenv('DBPASS')
-DB = "nem2p"
+DB = "ydp7xv"
 
-db = mysql.connector.connect(user=DBUSER, host=DBHOST, password=DBPASS, database=DB, ssl_disabled=True)
+db = mysql.connector.connect(user=DBUSER, host=DBHOST, password=DBPASS, database=DB)
 cur=db.cursor()
 
 app = FastAPI()
