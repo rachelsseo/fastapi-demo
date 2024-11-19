@@ -9,12 +9,12 @@ import json
 import os
 # from mysql.connector import RefreshOption
 
-# refresh = RefreshOption.LOG | RefreshOption.THREADS
+# refresh = RefreshOption.LOG
 
-DBHOST = "ds2022.cqee4iwdcaph.us-east-1.rds.amazonaws.com"
-DBUSER = "ds2022"
-DBPASS = os.getenv('DBPASS')
-DB = "ydp7xv"
+DBHOST="ds2022.cqee4iwdcaph.us-east-1.rds.amazonaws.com"
+DBUSER="ds2022"
+DBPASS=os.getenv('DBPASS')
+DB="ydp7xv"
 
 db = mysql.connector.connect(user=DBUSER, host=DBHOST, password=DBPASS, database=DB)
 cur=db.cursor()
@@ -29,13 +29,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# @app.get("/")  # zone apex
-# def zone_apex():
-   # return {"Good Day": "Sunshine!"}
 
 @app.get('/genres')
 async def get_genres():
-    db.cmd_refresh(refresh)
     query = "SELECT * FROM genres ORDER BY genreid;"
     try:    
         cur.execute(query)
@@ -51,7 +47,6 @@ async def get_genres():
 
 @app.get('/songs')
 async def get_genres():
-    db.cmd_refresh(refresh)
     query = "SELECT songs.title, songs.album, songs.artist, songs.year, songs.file, songs.image, genres.genre FROM songs JOIN genres WHERE songs.genre = genres.genreid;"
     try:    
         cur.execute(query)
