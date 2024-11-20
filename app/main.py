@@ -8,14 +8,13 @@ from mysql.connector import Error
 import json
 import os
 
-DBHOST="ds2022.cqee4iwdcaph.us-east-1.rds.amazonaws.com"
-DBUSER="ds2022"
-DBPASS=os.getenv('DBPASS')
-DB="ydp7xv"
+DBHOST = "ds2022.cqee4iwdcaph.us-east-1.rds.amazonaws.com"
+DBUSER = "ds2022"
+DBPASS = os.getenv('DBPASS')
+DB = "ydp7xv"
 
 
 app = FastAPI()
-
 from fastapi.middleware.cors import CORSMiddleware
 app.add_middleware(
     CORSMiddleware,
@@ -23,7 +22,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
 
 @app.get('/genres')
 async def get_genres():
@@ -45,7 +43,6 @@ async def get_genres():
         cur.close()
         db.close()
         return {"Error": "MySQL Error: " + str(e)}
-
 
 @app.get('/songs')
 async def get_genres():
